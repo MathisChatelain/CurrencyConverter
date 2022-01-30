@@ -10,8 +10,7 @@ function mobileCheck() {
 function addCrossPlatformClickListener(element,fonction){
     // Permet d'ajouter soit touchstart soit click sur un élement donné en fonction de la plateforme utilisée.
     // On utilise une fonction anonyme pour pouvoir appeller des méthodes en plus des fonctions.
-
-    if(mobilecheck()){ //-Mobile
+    if(mobileCheck()){ //-Mobile
     element.addEventListener('touchstart',() => fonction);
     }
     else{

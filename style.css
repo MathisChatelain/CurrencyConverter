@@ -1,0 +1,98 @@
+body {
+    margin: 0px;
+    height: 100vh;
+    display: grid;
+    grid-template-columns : 33.33% 33.33% 33.33%;
+    grid-template-rows: 10% 10% 10% auto;
+    grid-template-areas: 
+        " header  header  header  "
+        " input   input   label   "
+        " button1 button2 button3 "
+        " sect    sect    sect    " ;
+    background-color: rgb(59, 59, 59);
+}
+
+header {
+    grid-area: header;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    color: white;
+}
+
+button {
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+ul {
+    list-style: none;
+}
+
+#classic {
+    z-index: 10;
+}
+
+#crypto {
+    z-index: 2;
+}
+
+#memory {
+    z-index: 1;
+}
+
+#classicButton {
+    grid-area: button1;
+}
+
+#cryptoButton {
+    grid-area: button2;
+}
+
+#memoryButton {
+    grid-area: button3;
+}
+
+#moneyInput {
+    margin: 10px;
+    border-radius: 10px;
+    grid-area: input;
+}
+
+#moneyLabel {
+    margin: 10px;
+    grid-area: label;
+    background-color: cadetblue;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page {
+    grid-area: sect;
+    margin: 10px;
+    margin-top: 0px;
+    background-color: rgb(188, 197, 204);
+    text-align: center;
+}
+
+@media (min-width: 450px) {
+    body {
+        grid-template-areas: 
+        " header   header  header  "
+        " input   input   label   "
+        " button1  button2 button3 "
+        " classic  crypto  memory  ";
+    }
+    #classic {
+        grid-area: classic;
+    }
+    #crypto {
+        grid-area: crypto;
+    }
+    #memory {
+        grid-area: memory;
+    }
+}
