@@ -38,7 +38,7 @@ ul {
 }
 
 #classic {
-    z-index: 10;
+    z-index: 3;
 }
 
 #crypto {
@@ -51,14 +51,17 @@ ul {
 
 #classicButton {
     grid-area: button1;
+    opacity: 100%;
 }
 
 #cryptoButton {
     grid-area: button2;
+    opacity: 20%;
 }
 
 #memoryButton {
     grid-area: button3;
+    opacity: 20%;
 }
 
 #moneyInput {
@@ -102,5 +105,14 @@ ul {
     }
     #memory {
         grid-area: memory;
+    }
+    #classicButton {
+        opacity: 100%;
+    }
+    #cryptoButton {
+        opacity: 100%;
+    }
+    #memoryButton {
+        opacity: 100%;
     }
 }

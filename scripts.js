@@ -3,28 +3,65 @@ function getInput(element){
 }
 
 function selectPage(pagename){
-    // Place la page dont le nom est donné en argument à l'avant (z-index = 2;),
+    // Place la page dont le nom est donné en argument à l'avant (z-index = 3;),
     // Passe l'opacité des autres boutons de pages à 50%
     // Return 1; et est ignorée quand on n'est pas sur mobile (mobileCheck()==false)
+    if (screen.width < 450){
+        let classic = document.getElementById('classic');
+        let crypto = document.getElementById('crypto');
+        let memory = document.getElementById('memory');
+        let classicButton = document.getElementById('classicButton');
+        let cryptoButton = document.getElementById('cryptoButton');
+        let memoryButton = document.getElementById('memoryButton');
+
+        switch (pagename) {
+
+            case 'classic':  
+                classic.style.zIndex = "3";
+                crypto.style.zIndex = "2";
+                memory.style.zIndex = "1";
+                
+                classicButton.style.opacity = "100%";
+                cryptoButton.style.opacity = "20%";
+                memoryButton.style.opacity = "20%";
+                break;
+
+            case 'crypto':
+                classic.style.zIndex = "2";
+                crypto.style.zIndex = "3";
+                memory.style.zIndex = "1";
+                
+                classicButton.style.opacity = "20%";
+                cryptoButton.style.opacity = "100%";
+                memoryButton.style.opacity = "20%";
+                break;
+
+            case 'memory':
+                classic.style.zIndex = "2";
+                crypto.style.zIndex = "1";
+                memory.style.zIndex = "3";
+                
+                classicButton.style.opacity = "20%";
+                cryptoButton.style.opacity = "20%";
+                memoryButton.style.opacity = "100%";
+                break;
+        }
+        return 0; 
+    }   
+    else{
+        return 1;
+    }   
 }
 
-async function getExchangeRates(){
-    // Renvoie un tableau contenant les taux d'échanges obtenus via l'API
-    // L'API ne permet que des requetes journalieres donc on récupère les taux au chargement de la page
+async function setExchangeRates(){
+    // Déclare, dans localStorage un dictionnaire 'exchangeRates' contenant les taux d'échanges (basés sur le dollar) obtenus via l'API
     const  response = await fetch("https://openexchangerates.org/api/latest.json?app_id=5a491e83ebbb42518348231cd8776b1a");
     const jsonOpenExchange = await response.json();
+    const exchangeRates = jsonOpenExchange.rates;
     const date = getDate();
-    const rates = jsonOpenExchange.rates;
-    
     // Enregistre les taux d'échanges dans localStorage avec la date comme id
-    localStorage.setItem(date,rates);
-
-    if(typeof(jsonOpenExchange.error) == undefined){ // Si la requete à abouti
-        return rates
-    }
-    else{
-        return jsonOpenExchange.message
-    }
+    console.log(exchangeRates)
+    localStorage.setItem(date,exchangeRates);
 }
 
 function getDate(separator = '-'){
@@ -65,5 +102,17 @@ function addGlobalEnterListener(fonction){
     }
 };
 
-exchangeRates = getExchangeRates();
-console.log(exchangeRates);
+// Chargement de la page 
+setExchangeRates();
+
+let classicButton = document.getElementById('classicButton');
+classicButton.addEventListener('click',() => selectPage('classic'));
+
+
+let cryptoButton = document.getElementById('cryptoButton');
+cryptoButton.addEventListener('click',() => selectPage('crypto'));
+
+
+let memoryButton = document.getElementById('memoryButton');
+memoryButton.addEventListener('click',() => selectPage('memory'));
+
