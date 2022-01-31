@@ -10,8 +10,18 @@
     <title>CurrencyConverter</title>
     <header>CurrencyConverter</header>
 
-    <input type="text" id="moneyInput" placeholder="1" required minlength="1" maxlength="12" size="20">
-    <div id=moneyLabel>$</div>
+    <input type="text" id="moneyInput" placeholder="1" required minlength="1" maxlength="20" size="20">
+    <select id="moneyLabel" >
+        <option value="USD">$ (USD)</option>
+        <option value="GBP">£ (GBP)</option>
+        <option value="EUR">€ (EUR)</option>
+        <option value="CNY">¥ (CNY)</option>
+        <option value="BTC">₿ (BTC)</option>
+        <option value="ETH">⧫ (ETH)</option>
+        <option value="CHF">CHF</option>
+        <option value="MXN">$ (MXN)</option>
+        <option value="KRW">₩ (KRW)</option>
+      </select>
 
     <button id="classicButton">classic</button>
     <div class="page" id="classic">

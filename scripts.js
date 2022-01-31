@@ -1,4 +1,6 @@
-function getInput(element){
+function getInput(){
+    console.log(document.getElementById("moneyInput").value);
+    return document.getElementById("moneyInput").value;
     // Renvoie la valeur inscrite dans l'input si elle est valide ie. c'est un nombre positif.
 }
 
@@ -60,7 +62,6 @@ async function setExchangeRates(){
     const exchangeRates = jsonOpenExchange.rates;
     const date = getDate();
     // Enregistre les taux d'échanges dans localStorage avec la date comme id
-    console.log(exchangeRates)
     localStorage.setItem(date,exchangeRates);
 }
 
@@ -105,14 +106,19 @@ function addGlobalEnterListener(fonction){
 // Chargement de la page 
 setExchangeRates();
 
+// Appelle getInput en appuyant sur entrer
+addGlobalEnterListener(getInput)
+document.getElementById("moneyInput").addEventListener('change',getInput);
+
 let classicButton = document.getElementById('classicButton');
 classicButton.addEventListener('click',() => selectPage('classic'));
-
+classicButton.addEventListener('touchstart',() => selectPage('classic'));
 
 let cryptoButton = document.getElementById('cryptoButton');
 cryptoButton.addEventListener('click',() => selectPage('crypto'));
-
+cryptoButton.addEventListener('touchstart',() => selectPage('crypto'));
 
 let memoryButton = document.getElementById('memoryButton');
 memoryButton.addEventListener('click',() => selectPage('memory'));
+memoryButton.addEventListener('touchstart',() => selectPage('memory'));
 

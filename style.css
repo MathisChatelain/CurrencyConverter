@@ -75,10 +75,8 @@ ul {
     margin: 10px;
     grid-area: label;
     background-color: cadetblue;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
 }
 
 .page {
