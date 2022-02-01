@@ -1,5 +1,5 @@
 # CurrencyConverter
-## [Tester le site](https://github.com/MathisChatelain/CurrencyConverter/site.html)
+## [Tester le site](https://mathischatelain.github.io/CurrencyConverter/site.html)
 #### Ceci est mon second projet d'entrainement à Javascript.
 #### Mon but est d'apprendre à utiliser une API, d'où le choix de ce sujet, puisque je sais que j'aurais besoin de récupérer des taux de conversions à jour afin d'afficher un résultat en accord avec la réalité.
 #### Dans une seconde mesure je compte utiliser le display grid de CSS pour apprendre plus en détail à utiliser cette méthode.
