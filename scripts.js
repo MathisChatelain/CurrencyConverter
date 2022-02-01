@@ -1,7 +1,27 @@
-function getInput(){
-    console.log(document.getElementById("moneyInput").value);
-    return document.getElementById("moneyInput").value;
-    // Renvoie la valeur inscrite dans l'input si elle est valide ie. c'est un nombre positif.
+async function manageInput(){
+    let input = Number(document.getElementById("moneyInput").value);
+    
+    if(input.length == 0){
+        input = 0;
+    }
+    
+    const  response = await fetch("https://openexchangerates.org/api/latest.json?app_id=5a491e83ebbb42518348231cd8776b1a");
+    const jsonOpenExchange = await response.json();
+    const exchangeRates = jsonOpenExchange.rates;
+    console.log(exchangeRates);
+
+    let orderOfConversion = ['USD','EUR','GBP','CHF','CNY','KRW','BTC','MXN','AED','MYR','THB']
+
+    let UL = document.getElementById("mainUL");
+    UL.innerHTML = ""; // Reset UL
+
+    for(index in orderOfConversion){
+        let abbreviation = orderOfConversion[index];
+        let finalValue = Number(exchangeRates[abbreviation])*input;
+        var LI = document.createElement('li');
+        LI.innerText = finalValue.toString() +" "+ abbreviation + ' (' + exchangeRates[abbreviation].toString() + ')';
+        UL.appendChild(LI);
+    }
 }
 
 function selectPage(pagename){
@@ -63,6 +83,7 @@ async function setExchangeRates(){
     const date = getDate();
     // Enregistre les taux d'échanges dans localStorage avec la date comme id
     localStorage.setItem(date,exchangeRates);
+    return exchangeRates;
 }
 
 function getDate(separator = '-'){
@@ -106,9 +127,13 @@ function addGlobalEnterListener(fonction){
 // Chargement de la page 
 setExchangeRates();
 
-// Appelle getInput en appuyant sur entrer
-addGlobalEnterListener(getInput)
-document.getElementById("moneyInput").addEventListener('change',getInput);
+// Initialisation à 1 dollar américain 
+document.getElementById("moneyInput").value = 1;
+manageInput();
+
+// Appelle manageInput en appuyant sur entrer
+addGlobalEnterListener(manageInput)
+// document.getElementById("moneyInput").addEventListener('change',manageInput);
 
 let classicButton = document.getElementById('classicButton');
 classicButton.addEventListener('click',() => selectPage('classic'));
@@ -121,4 +146,3 @@ cryptoButton.addEventListener('touchstart',() => selectPage('crypto'));
 let memoryButton = document.getElementById('memoryButton');
 memoryButton.addEventListener('click',() => selectPage('memory'));
 memoryButton.addEventListener('touchstart',() => selectPage('memory'));
-
