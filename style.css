@@ -7,16 +7,115 @@
 body {
     margin: 0px;
     height: 100vh;
+    display: grid;
+    grid-template-columns : 33.33% 33.33% 33.33%;
+    grid-template-rows: 10% 10% 10% auto;
+    grid-template-areas: 
+        " header  header  header  "
+        " input   input   label   "
+        " button1 button2 button3 "
+        " sect    sect    sect    " ;
     background-color: rgb(59, 59, 59);
 }
 
-#player {
-    --size : 100px;
-    width: var(--size);
-    height: var(--size);
-    position: absolute;
-    background-color: rgb(136, 62, 62);
-    border : solid black 5px;
-    top: calc(50% - var(--size)/2);
-    left: calc(50% - var(--size)/2);
+header {
+    grid-area: header;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    font-size: 1.6em;
+    color: white;
+}
+
+button {
+    margin: 10px;
+    margin-bottom: 0px;
+}
+
+ul {
+    list-style: none;
+    padding-inline-start: 0px;
+}
+
+li {
+    padding: 10px 0px;
+}
+
+#classic {
+    z-index: 3;
+}
+
+#crypto {
+    z-index: 2;
+}
+
+#memory {
+    z-index: 1;
+}
+
+#classicButton {
+    grid-area: button1;
+    opacity: 100%;
+}
+
+#cryptoButton {
+    grid-area: button2;
+    opacity: 20%;
+}
+
+#memoryButton {
+    grid-area: button3;
+    opacity: 20%;
+}
+
+#moneyInput {
+    margin: 10px;
+    border-radius: 10px;
+    padding-left: 10px;
+    grid-area: input;
+}
+
+#moneyLabel {
+    margin: 10px;
+    grid-area: label;
+    background-color: cadetblue;
+    border-radius: 10px 10px 0px 0px;
+    text-align: center;
+}
+
+.page {
+    grid-area: sect;
+    margin: 10px;
+    margin-top: 0px;
+    background-color: rgb(188, 197, 204);
+    text-align: center;
+}
+
+@media (min-width: 450px) {
+    body {
+        grid-template-areas: 
+        " header   header  header  "
+        " input   input   label   "
+        " button1  button2 button3 "
+        " classic  crypto  memory  ";
+    }
+    #classic {
+        grid-area: classic;
+    }
+    #crypto {
+        grid-area: crypto;
+    }
+    #memory {
+        grid-area: memory;
+    }
+    #classicButton {
+        opacity: 100%;
+    }
+    #cryptoButton {
+        opacity: 100%;
+    }
+    #memoryButton {
+        opacity: 100%;
+    }
 }

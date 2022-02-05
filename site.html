@@ -7,9 +7,41 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <title>game</title>
-    
-    <div id='player'></div>
+    <title>CurrencyConverter</title>
+    <header>CurrencyConverter</header>
+
+    <input type="number" id="moneyInput" required maxlength="20" size="20">
+    <select id="moneyLabel" >
+        <option value="USD">$ (USD)</option>
+        <option value="GBP">£ (GBP)</option>
+        <option value="EUR">€ (EUR)</option>
+        <option value="CNY">¥ (CNY)</option>
+        <option value="BTC">₿ (BTC)</option>
+        <!-- <option value="ETH">⧫ (ETH)</option> -->
+        <option value="CHF">CHF</option>
+        <option value="MXN">$ (MXN)</option>
+        <option value="KRW">₩ (KRW)</option>
+      </select>
+
+    <button id="classicButton">classic</button>
+    <div class="page" id="classic">
+        <ul id="mainUL">
+        </ul>
+    </div>
+
+    <button id="cryptoButton">crypto</button>
+    <div class="page" id="crypto">
+        <ul>
+
+        </ul>
+    </div>
+
+    <button id="memoryButton">memory</button>
+    <div class="page" id="memory">
+        <ul>
+
+        </ul>
+    </div>
 
     <script src="scripts.js"></script>
 </body>
